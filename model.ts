@@ -9,7 +9,7 @@ export class User {
 export class Settings {
     constructor(
         public defaultDueMins: number = 10,
-        public defaultTheme: string = "dark"
+        public theme: string = "light"
     ) { }
 }
 class Card {
