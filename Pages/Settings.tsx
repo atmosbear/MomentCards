@@ -45,10 +45,24 @@ function ChangeableSettings(props: ChangeableSettingsProps) {
         }
     }
     function revertToDefaultSettings(e: React.MouseEvent<HTMLSpanElement, MouseEvent>) {
+        let tb = document.getElementById(props.beforeText)! as HTMLInputElement
         let cvs = document.getElementById("currValueSetting")
-        cvs!.innerHTML = props.currentValue.toString()
-        props.user.settings[props.settingsNameAsVar] = cvs!.innerHTML
-        console.log(props.user.settings)
+        let oldValue = props.currentValue.toString()
+        cvs!.innerHTML = oldValue
+        props.user.settings[props.settingsNameAsVar] = oldValue
+        tb.value = oldValue
+    }
+    function hideTB(tb, saveB, cancelB) {
+        tb.style.display = "none"
+        saveB.style.display = "none"
+        cancelB.style.display = "none"
+    }
+    function showTBandBeginEditing(tb, saveB, cancelB) {
+        let cvs = document.getElementById("currValueSetting")
+        cvs!.innerHTML = "editing..."
+        tb.style.display = "inline"
+        saveB.style.display = "inline"
+        cancelB.style.display = "inline"
     }
     function toggleTextBox(e: React.MouseEvent<HTMLSpanElement, MouseEvent>) {
         let tb = document.getElementById(props.beforeText)!
@@ -56,15 +70,9 @@ function ChangeableSettings(props: ChangeableSettingsProps) {
         let cancelB = document.getElementById("cancelB")!
         if (e.target !== tb) {
             if (tb.style.display === "inline") {
-                tb.style.display = "none"
-                saveB.style.display = "none"
-                cancelB.style.display = "none"
+                hideTB(tb, saveB, cancelB)
             } else {
-                let cvs = document.getElementById("currValueSetting")
-                cvs!.innerHTML = "editing..."
-                tb.style.display = "inline"
-                saveB.style.display = "inline"
-                cancelB.style.display = "inline"
+                showTBandBeginEditing(tb, saveB, cancelB)
             }
         }
     }
