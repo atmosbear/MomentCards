@@ -1,0 +1,13 @@
+{
+    "deckName": "DEVDeck",
+    "cards": {
+        "1": {
+            "front": "hello",
+            "back": "goodbye"
+        },
+        "2": {
+            "front": "helloooo",
+            "back": "Gooooooodddbyeeeeee!"
+        }
+    }
+}

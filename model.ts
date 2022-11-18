@@ -5,6 +5,18 @@ export class User {
         public decks: Deck[] = [],
         public currentDeck?: Deck,
     ) { }
+
+    getDueCards() {
+        let cards: Card[] = []
+        this.decks.forEach((deck) => {
+            deck.cards.forEach((card) => {
+                if (card.isDue()) {
+                    cards.push(card)
+                }
+            })
+        })
+        return cards
+    }
 }
 export class Settings {
     constructor(
@@ -12,7 +24,7 @@ export class Settings {
         public theme: string = "light"
     ) { }
 }
-class Card {
+export class Card {
     constructor(
         public front: string,
         public back: string,
@@ -21,6 +33,10 @@ class Card {
 
     dueDateFromNowMS(): number {
         return this.dueDateMS - Date.now()
+    }
+
+    isDue() {
+        return (this.dueDateFromNowMS() <= 0)
     }
 }
 class Deck {
