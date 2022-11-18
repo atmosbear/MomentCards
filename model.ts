@@ -1,3 +1,5 @@
+import CardSubmitForm from "./Pages/CardSubmitForm"
+
 export class User {
     constructor(
         public username: string = "DevLearner",
@@ -6,14 +8,34 @@ export class User {
         public currentDeck?: Deck,
     ) { }
 
-    getDueCards() {
+    getDueCards(): Card[] {
+        let allCards: Card[] = this.getAllCards()
+        let dues: Card[] = []
+        allCards.forEach((card) => {
+            if (card.isDue()) {
+                dues.push(card)
+            }
+        })
+        return allCards
+    }
+
+    getAllCards(): Card[] {
         let cards: Card[] = []
         this.decks.forEach((deck) => {
             deck.cards.forEach((card) => {
-                if (card.isDue()) {
-                    cards.push(card)
-                }
+                cards.push(card)
             })
+        })
+        return cards
+    }
+
+    getRecentlyMadeCards(quantity: number = 20): Card[] {
+        // technically, these aren't recent. Fix this later.
+        let cards: Card[] = []
+        this.getAllCards().forEach((card, i) => {
+            if (i < 20) {
+                cards.push(card)
+            }
         })
         return cards
     }
@@ -29,13 +51,14 @@ export class Card {
         public front: string,
         public back: string,
         private dueDateMS: number = Date.now() + user.settings.defaultDueMins * 1000 * 60,
+        public creationDate: number = Date.now()
     ) { }
 
     dueDateFromNowMS(): number {
         return this.dueDateMS - Date.now()
     }
 
-    isDue() {
+    isDue(): boolean {
         return (this.dueDateFromNowMS() <= 0)
     }
 }
@@ -47,9 +70,18 @@ class Deck {
         user.decks.push(this) // ensures the deck belongs to the current user.
     }
 }
-export function getUserFromLocalStorage() {
-    let dataExists = false
+export function getUserFromLocalStorage(): User {
+    let dataExists = true
     if (dataExists) {
+        const reqURL = "./fakeCards.json"
+        let req = new Request(reqURL)
+        async function a () {
+            let resp = await fetch(req)
+            return await resp.json()
+        }
+        let b = a()
+        console.log(b)
+
         // read from JSON or wherever
         return new User(/** put settings from JSON/wherever */)
     } else {
