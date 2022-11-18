@@ -1,14 +1,15 @@
+import CardSubmitForm from './CardSubmitForm'
 import React from 'react'
+import { User } from '../model'
 
-type CardCreatorProps = {}
+type CardCreatorProps = {
+    user: User
+}
 
 export default function CardCreator(props: CardCreatorProps) {
     return (
-        <div id="card-creator" style={{ display: "flex", flexDirection: "column", width: "" }}>
-            Create
-            <textarea placeholder="front"></textarea>
-            <textarea placeholder="back"></textarea>
-            <button>create</button>
+        <div>
+            <CardSubmitForm />
         </div>
     )
 }

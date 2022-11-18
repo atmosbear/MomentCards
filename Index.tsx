@@ -8,7 +8,7 @@ import Settings from './Pages/Settings'
 createRoot(document.getElementById("root")!).render(<Index />)
 
 function Index() {
-    const [page, setPage] = useState(<Settings user={user} />)
+    const [page, setPage] = useState(<CardCreator user={user} />)
     return (
         <div>
             <PageSwitcher user={user} setPageState={setPage} />

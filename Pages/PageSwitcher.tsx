@@ -22,11 +22,11 @@ export default function PageSwitcher(props: PageSwitcherProps) {
         width: "100%",
         boxShadow: "2px 2px 50vh 50vh lightblue"
     }
-    let tabStyle = { cursor: "pointer", textShadow: "2px 2px black" }
+    let tabStyle = { cursor: "pointer", textShadow: "2px 2px black" , height: 0, lineHeight: 1, marginBottom: "4rem", marginTop: "1rem"}
     return (
         <div style={pageSwitcherStyle}>
             <p style={tabStyle}
-                onClick={() => props.setPageState(<CardCreator />)}
+                onClick={() => props.setPageState(<CardCreator user={user} />)}
             >
                 Create
             </p>
@@ -35,9 +35,9 @@ export default function PageSwitcher(props: PageSwitcherProps) {
                     onClick={() => props.setPageState(<StudyPage />)}
                 >
                     Study
-                    <span>
-                        {user.getDueCards().length}
-                    </span>
+                    <sup style={{ fontSize: "1.5rem" }}>
+                        {" (" + user.getDueCards().length + ")"}
+                    </sup>
                 </p>
             </div>
 
