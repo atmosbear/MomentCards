@@ -1,6 +1,6 @@
 import CardCard from './CardCard'
 import React from 'react'
-import { user, User } from '../model'
+import { User } from "../User"
 
 
 type DeckPreviewProps = {
@@ -9,7 +9,7 @@ type DeckPreviewProps = {
 
 
 export default function DeckPreview(props: DeckPreviewProps) {
-    let last20Created = user.getRecentlyMadeCards(20)
+    let last20Created = props.user.getRecentlyMadeCards(20)
     let cardCards: JSX.Element[] = []
     last20Created.forEach((card) => {
         cardCards.push(<CardCard card={card}  />)

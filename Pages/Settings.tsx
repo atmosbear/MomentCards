@@ -1,5 +1,5 @@
 import React from 'react'
-import { user, User } from '../model'
+import { User } from "../User"
 
 
 type SettingsProps = {

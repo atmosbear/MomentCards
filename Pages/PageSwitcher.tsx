@@ -2,9 +2,8 @@ import React from 'react'
 import Settings from './Settings'
 import CardCreator from './CardCreator'
 import StudyPage from './StudyPage'
-import { fix_position } from 'svelte/internal'
-import { Card, Settings as SettingsClass, User } from '../model'
-import { user } from '../model'
+import { Card, Settings as SettingsClass } from '../model'
+import { User } from "../User"
 
 type PageSwitcherProps = {
     setPageState: Function
@@ -26,23 +25,23 @@ export default function PageSwitcher(props: PageSwitcherProps) {
     return (
         <div style={pageSwitcherStyle}>
             <p style={tabStyle}
-                onClick={() => props.setPageState(<CardCreator user={user} />)}
+                onClick={() => props.setPageState(<CardCreator user={props.user} />)}
             >
                 Create
             </p>
             <div>
                 <p style={tabStyle}
-                    onClick={() => props.setPageState(<StudyPage />)}
+                    onClick={() => props.setPageState(<StudyPage user={props.user} />)}
                 >
                     Study
                     <sup style={{ fontSize: "1.5rem" }}>
-                        {" (" + user.getDueCards().length + ")"}
+                        {" (" + props.user.getDueCards().length + ")"}
                     </sup>
                 </p>
             </div>
 
             <p style={tabStyle}
-                onClick={() => props.setPageState(<Settings user={user} />)}
+                onClick={() => props.setPageState(<Settings user={props.user} />)}
             >
                 Settings
             </p>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { User } from '../model'
+import { User } from "../User";
 
 type CardSubmitFormProps = {
     user: User

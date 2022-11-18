@@ -1,0 +1,17 @@
+{
+    "deckName": "DEVDeck",
+    "cards": {
+        "id-rtqyuoipewbflkvzbvurtepqghjrieo": {
+            "front": "hello",
+            "back": "goodbye"
+        },
+        "id-nohbjkfvdgskghyrebdfjabflidkdhjs": {
+            "front": "helloooo",
+            "back": "Gooooooodddbyeeeeee!"
+        },
+        "id-f34fgdfsa": {
+            "front": "helloooo",
+            "back": "Gooooooodddbyeeeeee!"
+        }
+    }
+}

@@ -1,11 +1,15 @@
 import React from 'react'
+import { User } from '../User'
 
-type StudyPageProps = {}
+type StudyPageProps = {
+    user: User
+}
 
 export default function StudyPage(props: StudyPageProps) {
+    let deck = <div>{props.user.currentDeck ? props.user.currentDeck.name : "hi"}</div>
     return (
         <div>
-            ghrasrga
+            Current Deck: "{deck}"
         </div>
     )
 }

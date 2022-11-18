@@ -1,17 +1,19 @@
 import PageSwitcher from './Pages/PageSwitcher'
 import CardCreator from './Pages/CardCreator'
-import { user } from './model'
 import React, { useState } from 'react'
-import { createRoot } from 'react-dom/client'
 import Settings from './Pages/Settings'
+import { User } from './User'
 
-createRoot(document.getElementById("root")!).render(<Index />)
 
-function Index() {
-    const [page, setPage] = useState(<CardCreator user={user} />)
+type IndexProps = {
+    user: User
+}
+
+export function Index(props: IndexProps) {
+    const [page, setPage] = useState(<CardCreator user={props.user} />)
     return (
         <div>
-            <PageSwitcher user={user} setPageState={setPage} />
+            <PageSwitcher user={props.user} setPageState={setPage} />
             <div style={{padding: "30px"}}>
             {page}
             </div>

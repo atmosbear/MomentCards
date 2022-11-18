@@ -8,7 +8,8 @@ type CardCardProps = {
 export default function CardCard(props: CardCardProps) {
     return (
         <div>
-            
+            k
+            {props.card.front}
         </div>
     )
 }
