@@ -30,10 +30,11 @@ export class User {
             let ND = new Deck(data.deckName, data.cards)
             this.decks.push(ND)
             this.currentDeck = ND
-            console.log("user decks", this.decks)
-            console.log("no, final user is....", this)
         }).catch(error => {
             console.error("Something went wrong: ", error)
+        }).finally(() => {
+            window.dispatchEvent(new CustomEvent("deck is done loading!"))
+            console.log("done")
         })
     }
 
