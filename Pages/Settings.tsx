@@ -8,23 +8,30 @@ type SettingsProps = {
 
 export default function Settings(props: SettingsProps) {
     return (
-        <div style={{ fontSize: "2rem" }}>
-            <ChangeableSettings
-                mustBeType="number"
-                user={props.user}
-                settingsNameAsVar="defaultDueDate"
-                beforeText="Default due date: "
-                currentValue={props.user.settings.defaultDueMins}
-                afterText=" minutes"
-            />
-            <ChangeableSettings
-                mustBeType="theme"
-                user={props.user}
-                settingsNameAsVar="defaultTheme"
-                beforeText="Theme: "
-                currentValue={props.user.settings.theme}
-                afterText=" mode"
-            />
+        <div>
+            <div style={{ textAlign: "center", display: "flex", justifyContent: "space-around", width: "100%", marginLeft: -30, paddingBottom: 50, lineHeight: 0.5, textShadow: "1px 1px gray" }}>Settings</div>
+            <div style={{ fontSize: "2rem" }}>
+                <ChangeableSettings
+                    mustBeType="number"
+                    user={props.user}
+                    settingsNameAsVar="defaultDueDate"
+                    beforeText="Default due date: "
+                    currentValue={props.user.settings.defaultDueMins}
+                    afterText=" minutes"
+                />
+                <ChangeableSettings
+                    mustBeType="theme"
+                    user={props.user}
+                    settingsNameAsVar="defaultTheme"
+                    beforeText="Theme: "
+                    currentValue={props.user.settings.theme}
+                    afterText=" mode"
+                />
+                <p></p>
+                NOT IMPLEMENTED YET: update create screen: every second, every 5 seconds, every 10 seconds, every 20 seconds, never, every 1m,  every 2 mins, 5m, etc
+                <p></p>
+                NOT IMPLEMENTED YET: update cards to study: every second (practically realtime, which is kinda the point), every 5 seconds, every 10 seconds, every 20 seconds, etc 
+            </div>
         </div>
     )
 }
