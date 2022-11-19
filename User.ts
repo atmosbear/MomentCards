@@ -34,7 +34,6 @@ export class User {
             console.error("Something went wrong: ", error)
         }).finally(() => {
             window.dispatchEvent(new CustomEvent("deck is done loading!"))
-            console.log("done")
         })
     }
 
