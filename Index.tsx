@@ -10,7 +10,10 @@ type IndexProps = {
 }
 
 export function Index(props: IndexProps) {
-    const [page, setPage] = useState(<StudyPage user={props.user} />)
+    const [page, setPage] = useState(<CardCreator user={props.user} />)
+    window.addEventListener("deck is done loading!", () => {
+        setPage(<CardCreator user={props.user} />)
+    }, { once: true })
     return (
         <div>
             <PageSwitcher user={props.user} setPageState={setPage} />

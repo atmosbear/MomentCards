@@ -1,20 +1,25 @@
 {
     "deckName": "DEVDeck",
-    "cards": {
-        "id-rtqyuoipewbflkvzbvurtepqghjrieo": {
+    "cards": [{
             "front": "hello",
             "back": "goodbye",
-            "dueMS": 10
+            "dueMS": 1668892597034,
+            "creationDate": 316256316161,
+            "isSuspended": false
         },
-        "id-nohbjkfvdgskghyrebdfjabflidkdhjs": {
+        {
             "front": "helloooo",
             "back": "Gooooooodddbyeeeeee!",
-            "dueMS": 10
+            "dueMS": 1668892611301,
+            "creationDate": 1668892597034,
+            "isSuspended": false
         },
-        "id-f34fgdfsa": {
+        {
             "front": "feafeafeafeaf",
             "back": "rgsgreds!",
-            "dueMS": 10
+            "dueMS": 1668892611301,
+            "creationDate": 1668892597034,
+            "isSuspended": false
         }
-    }
+    ]
 }

@@ -7,15 +7,30 @@ export class Settings {
     ) { }
 }
 export class Card {
-    public dueDateMS
     constructor(
         public front: string,
         public back: string,
-        private settingsDueMins: number,
+        public timeOptions: {fromNow?: number, fromEpoch?: number, defaultTime?: number},
         public creationDate: number = Date.now(),
         public isSuspended: boolean = false
     ) {
-        this.dueDateMS = Date.now() + settingsDueMins * 1000 * 60
+        let knownFromNow = timeOptions.fromNow !== undefined
+        let knownFromEpoch = timeOptions.fromEpoch !== undefined
+        if (knownFromNow && knownFromEpoch) {
+            // nothing to do!
+        } else if (knownFromEpoch && !knownFromNow) {
+            // find fromNow
+            this.timeOptions.fromNow = Date.now() - this.timeOptions.fromEpoch!
+        } else if (!knownFromEpoch && knownFromNow) {
+            this.timeOptions.fromEpoch = Date.now() + this.timeOptions.fromNow!
+        }  else { // if neither are known...
+            if (this.timeOptions.defaultTime === undefined) { // and if there's no default time passed in from the settings object...
+                this.timeOptions.defaultTime = (1000 * 60 * 10) // assume it's 10.
+            }
+            // now set both fromNow and fromEpoch.
+            this.timeOptions.fromNow = this.timeOptions.defaultTime
+            this.timeOptions.fromEpoch = Date.now() + this.timeOptions.defaultTime
+        }
     }
 
     suspend() {
@@ -23,7 +38,7 @@ export class Card {
     }
 
     getDueDateFromNowMS(): number {
-        return this.dueDateMS - Date.now()
+        return this.timeOptions.fromEpoch! - Date.now()
     }
 
     isDue(): boolean {
