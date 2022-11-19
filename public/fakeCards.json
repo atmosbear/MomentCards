@@ -3,15 +3,18 @@
     "cards": {
         "id-rtqyuoipewbflkvzbvurtepqghjrieo": {
             "front": "hello",
-            "back": "goodbye"
+            "back": "goodbye",
+            "dueMS": 10
         },
         "id-nohbjkfvdgskghyrebdfjabflidkdhjs": {
             "front": "helloooo",
-            "back": "Gooooooodddbyeeeeee!"
+            "back": "Gooooooodddbyeeeeee!",
+            "dueMS": 10
         },
         "id-f34fgdfsa": {
             "front": "feafeafeafeaf",
-            "back": "rgsgreds!"
+            "back": "rgsgreds!",
+            "dueMS": 10
         }
     }
 }

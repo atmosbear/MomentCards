@@ -1,3 +1,6 @@
+import FlipButton from './FlipButton'
+import AnswerButtons from './ConfidenceMeter'
+import StudyCard from './StudyCard'
 import React, { useEffect, useState } from 'react'
 import { User } from '../User'
 
@@ -5,13 +8,12 @@ type StudyPageProps = {
     user: User
 }
 
-let waitfor = false;
 export default function StudyPage(props: StudyPageProps) {
-    let [deck, setDeck] = useState(<span>{props.user.currentDeck ? props.user.currentDeck.name : "No decks!"}</span>)
-    window.addEventListener("deck is done loading!", () => {console.log("Event fired!"); setDeck(<span>{props.user.currentDeck ? props.user.currentDeck.name : "No decks!"}</span>)}, {once: true})
     return (
-        <div style={{ fontSize: "1 rem" }}>
-            Current Deck: "{deck}"
+        <div style={{boxShadow: "0px 50px 100px -100px inset #81C6E8", backgroundColor: "#ffeeee", padding: 30, borderRadius: 20, height: "70vh", width: "80vw", margin: "auto" }}>
+            <StudyCard user={props.user} card={props.user.getCurrentCard()} />
+            <FlipButton card={props.user.getCurrentCard()}/>
+            <AnswerButtons card={props.user.getCurrentCard()} />
         </div>
     )
 }

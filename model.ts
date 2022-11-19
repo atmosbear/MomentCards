@@ -12,17 +12,22 @@ export class Card {
         public front: string,
         public back: string,
         private settingsDueMins: number,
-        public creationDate: number = Date.now()
+        public creationDate: number = Date.now(),
+        public isSuspended: boolean = false
     ) {
         this.dueDateMS = Date.now() + settingsDueMins * 1000 * 60
     }
 
-    dueDateFromNowMS(): number {
+    suspend() {
+        this.isSuspended = true
+    }
+
+    getDueDateFromNowMS(): number {
         return this.dueDateMS - Date.now()
     }
 
     isDue(): boolean {
-        return (this.dueDateFromNowMS() <= 0)
+        return (this.getDueDateFromNowMS() <= 0)
     }
 }
 export class Deck {

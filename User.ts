@@ -11,6 +11,25 @@ export class User {
         this.populateData()
     }
 
+    getCurrentCard(): Card {
+        // if (this.getAllCards().length > 0) {
+
+        // }
+        let card = this.getDueCards().length > 0 ? this.getDueCards()[0] : new Card(cardsButNotDueMessage, noCardsMessage, 10000)
+        return card
+    }
+
+    getUnsuspendedCards(): Card[] {
+        let allCards: Card[] = this.getAllCards();
+        let nonSuspendedCards: Card[] = [];
+        allCards.forEach((card) => {
+            if (!card.isSuspended) {
+                nonSuspendedCards.push(card);
+            }
+        });
+        return nonSuspendedCards;
+    }
+
     getDueCards(): Card[] {
         let allCards: Card[] = this.getAllCards();
         let dues: Card[] = [];
@@ -19,7 +38,7 @@ export class User {
                 dues.push(card);
             }
         });
-        return allCards;
+        return dues;
     }
 
     async populateData() {
@@ -34,6 +53,7 @@ export class User {
             console.error("Something went wrong: ", error)
         }).finally(() => {
             window.dispatchEvent(new CustomEvent("deck is done loading!"))
+            console.log("loaded deck.")
         })
     }
 
@@ -67,3 +87,6 @@ export class User {
         return cards;
     }
 }
+
+export let noCardsMessage = "No active cards have been found.<br />Create one?"
+export let cardsButNotDueMessage = "There's nothing to study right now."

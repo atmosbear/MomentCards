@@ -8,7 +8,7 @@ type CardCardProps = {
 export default function CardCard(props: CardCardProps) {
     return (
         <div>
-            k
+            kghrefgf
             {props.card.front}
         </div>
     )
