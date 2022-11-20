@@ -1,3 +1,4 @@
+import { posOrNegMSto0000 } from "./helpers"
 import { User } from "./User"
 
 export class Settings {
@@ -39,6 +40,10 @@ export class Card {
 
     getDueDateFromNowMS(): number {
         return this.timeOptions.fromEpoch! - Date.now()
+    }
+
+    getDueDateFromNowHumanReadable(): string {
+        return posOrNegMSto0000(this.getDueDateFromNowMS())
     }
 
     isDue(): boolean {
