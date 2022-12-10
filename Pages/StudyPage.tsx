@@ -9,11 +9,13 @@ type StudyPageProps = {
 }
 
 export default function StudyPage(props: StudyPageProps) {
-    return (<div>
+    const [flipped, setFlipped] = useState(false)
+    return (
+    <div>
         <div style={{ textAlign: "center", display: "flex", justifyContent: "space-around", width: "100%", marginLeft: -30, paddingBottom: 50, lineHeight: 0.5, textShadow: "1px 1px gray" }}>Study</div>
         <div style={{ boxShadow: "0px 50px 100px -100px inset #81C6E8", backgroundColor: "#ffeeee", padding: 30, borderRadius: 20, height: "70vh", width: "80vw", margin: "auto" }}>
-            <StudyCard user={props.user} card={props.user.getCurrentCard()} />
-            <FlipButton card={props.user.getCurrentCard()} />
+            <StudyCard flipped={flipped} setFlipped={setFlipped} user={props.user} card={props.user.getCurrentCard()} />
+            <FlipButton card={props.user.getCurrentCard()} flipped={flipped} flipCard={setFlipped} />
             <AnswerButtons card={props.user.getCurrentCard()} />
         </div>
     </div>

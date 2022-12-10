@@ -12,7 +12,7 @@ export default function DeckPreview(props: DeckPreviewProps) {
     let last20Created = props.user.getRecentlyMadeCards(20)
     let cardCards: JSX.Element[] = []
     last20Created.forEach((card) => {
-        cardCards.push(<CardCard card={card}  />)
+        cardCards.push(<CardCard card={card} key={card.front + card.back + card.creationDate}  />)
     })
 
     return (
